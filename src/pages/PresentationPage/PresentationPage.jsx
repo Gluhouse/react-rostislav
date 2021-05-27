@@ -5,6 +5,7 @@ import {
   RoundButton,
   ToggleButton,
   NavigationLink,
+  InputText,
 } from "components";
 
 import { HeaderMenuBar } from "modules";
@@ -13,6 +14,9 @@ import { Home, Search, Settings, StarFilled, StarHollow } from "assets";
 import { BUTTON_SIZES } from "constants/buttonSizes";
 import { colors } from "styles";
 import { StyledPresentationPage } from "./PresentationPageStyles";
+
+import { useFormik } from "formik";
+import { formikConfig } from "./data";
 
 const PresentationPage = () => {
   const [buttonState, setButtonState] = useState(false);
@@ -27,10 +31,39 @@ const PresentationPage = () => {
     setToggleButtonState(!toggleButtonState);
   };
 
+  const handleSubmitForm = (data, formikHelpers) => {
+    console.log(data);
+    console.log(formikHelpers);
+    formikHelpers.resetForm();
+  };
+
+  const formik = useFormik({ ...formikConfig, onSubmit: handleSubmitForm });
+
   return (
     <StyledPresentationPage>
       <HeaderMenuBar />
       <h1>Presentation Page</h1>
+
+      <form onSubmit={formik.handleSubmit}>
+        <InputText
+          error={formik.errors.firstName}
+          value={formik.values.firstName}
+          name="firstName"
+          onChange={formik.handleChange}
+        />
+        <InputText
+          error={formik.errors.lastName}
+          value={formik.values.lastName}
+          name="lastName"
+          onChange={formik.handleChange}
+        />
+        <Button
+          color={colors.PRIMARY}
+          size={BUTTON_SIZES.BIG}
+          text="Submit"
+          type="submit"
+        ></Button>
+      </form>
 
       <Button
         color={colors.PRIMARY}
