@@ -8,12 +8,12 @@ import {
   InputText,
 } from "components";
 
-import { HeaderMenuBar } from "modules";
+import { HeaderMenuBar, Counter } from "modules";
 
 import { Home, Search, Settings, StarFilled, StarHollow } from "assets";
 import { BUTTON_SIZES } from "constants/buttonSizes";
 import { colors } from "styles";
-import { StyledPresentationPage } from "./PresentationPageStyles";
+import { StyledPresentationPage, StyledButton } from "./PresentationPageStyles";
 
 import { useFormik } from "formik";
 import { formikConfig } from "./data";
@@ -102,6 +102,8 @@ const PresentationPage = () => {
       >
         {toggleButtonState ? <StarFilled /> : <StarHollow />}
       </ToggleButton>
+      <StyledButton text="Gay"></StyledButton>
+      <Counter></Counter>
     </StyledPresentationPage>
   );
 };
