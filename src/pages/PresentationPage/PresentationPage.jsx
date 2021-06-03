@@ -1,19 +1,13 @@
 import { useState } from "react";
-import {
-  Button,
-  Text,
-  RoundButton,
-  ToggleButton,
-  NavigationLink,
-  InputText,
-} from "components";
+import { Button, Text, RoundButton, ToggleButton, InputText } from "components";
 
-import { HeaderMenuBar } from "modules";
+import { HeaderMenuBar, Counter, LoginForm } from "modules";
+
 
 import { Home, Search, Settings, StarFilled, StarHollow } from "assets";
 import { BUTTON_SIZES } from "constants/buttonSizes";
 import { colors } from "styles";
-import { StyledPresentationPage } from "./PresentationPageStyles";
+import { StyledPresentationPage, StyledButton } from "./PresentationPageStyles";
 
 import { useFormik } from "formik";
 import { formikConfig } from "./data";
@@ -21,6 +15,7 @@ import { formikConfig } from "./data";
 const PresentationPage = () => {
   const [buttonState, setButtonState] = useState(false);
   const [toggleButtonState, setToggleButtonState] = useState(false);
+  const [formState, setFormState] = useState(false);
 
   const handleClick = () => {
     setButtonState(!buttonState);
@@ -43,6 +38,9 @@ const PresentationPage = () => {
     <StyledPresentationPage>
       <HeaderMenuBar />
       <h1>Presentation Page</h1>
+      <LoginForm setFormState={setFormState} />
+
+      {formState ? <StarFilled /> : <StarHollow />}
 
       <form onSubmit={formik.handleSubmit}>
         <InputText
@@ -102,6 +100,8 @@ const PresentationPage = () => {
       >
         {toggleButtonState ? <StarFilled /> : <StarHollow />}
       </ToggleButton>
+      <StyledButton text="Gay"></StyledButton>
+      <Counter></Counter>
     </StyledPresentationPage>
   );
 };

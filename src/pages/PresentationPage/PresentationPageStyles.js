@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Home, Search, Settings } from "assets";
 import { spaces } from "styles";
+import { Button } from "components";
 
 export const StyledPresentationPage = styled.section`
   display: flex;
@@ -19,4 +20,8 @@ export const NavigationLinkWrapper = styled.div`
   a {
     margin-left: ${spaces.SPACES_16};
   }
+`;
+
+export const StyledButton = styled(Button)`
+  background-color: aqua;
 `;
