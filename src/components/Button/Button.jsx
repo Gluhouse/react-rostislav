@@ -2,6 +2,7 @@ import { StyledButton } from "./ButtonStyles";
 import { BUTTON_SIZES } from "constants/buttonSizes";
 
 function Button({
+  className,
   name,
   color,
   onClick,
@@ -11,6 +12,7 @@ function Button({
 }) {
   return (
     <StyledButton
+      className={className}
       name={name}
       width={size}
       backgroundColor={color}
